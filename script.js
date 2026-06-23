@@ -14,12 +14,12 @@ function renderProducts(filteredProducts) {
   filteredProducts.forEach(p => {
     html += `
       <div class="col-md-4 mb-4">
-        <div class="card product-card h-100 bg-white">
+        <div class="card product-card h-100 bg-dark text-white border-0">
           <img src="${p.img}" class="card-img-top" style="height: 320px; object-fit: cover;">
           <div class="card-body d-flex flex-column">
             <h5 class="card-title fw-bold">${p.name}</h5>
             <p class="text-success fw-bold fs-3">৳ ${p.price}</p>
-            <button onclick="addToCart(${p.id})" class="btn btn-dark w-100 mt-auto">অ্যাড টু কার্ট</button>
+            <button onclick="addToCart(${p.id})" class="btn btn-warning w-100 mt-auto">অ্যাড টু কার্ট</button>
           </div>
         </div>
       </div>`;
@@ -37,38 +37,7 @@ function addToCart(id) {
 }
 
 function filterCategory(cat) {
-  document.querySelectorAll('.btn-outline-dark').forEach(btn => btn.classList.remove('active'));
-  if(cat === 'all') document.getElementById('all-btn').classList.add('active');
-  else if(cat === 'sari') document.getElementById('sari-btn').classList.add('active');
-  else if(cat === 'kurta') document.getElementById('kurta-btn').classList.add('active');
-  else if(cat === 'shirt') document.getElementById('shirt-btn').classList.add('active');
-
-  let filtered = cat === 'all' ? products : products.filter(p => p.cat === cat);
-  renderProducts(filtered);
-}
-
-function renderCart() {
-  let html = '';
-  let total = 0;
-  cart.forEach((item, index) => {
-    total += item.price;
-    html += `<div class="d-flex justify-content-between mb-2"><span>${item.name}</span><span>৳ ${item.price}</span></div>`;
-  });
-  document.getElementById('cart-items').innerHTML = html;
-  document.getElementById('cart-total').innerHTML = `৳ ${total}`;
-}
-
-function addToCart(id) {
-  let product = products.find(p => p.id === id);
-  cart.push(product);
-  document.getElementById('cart-count').textContent = cart.length;
-  document.getElementById('cart-count').style.transform = 'scale(1.3)';
-  setTimeout(() => document.getElementById('cart-count').style.transform = 'scale(1)', 300);
-  alert(product.name + " কার্টে যোগ হয়েছে! 🛍️");
-}
-
-function filterCategory(cat) {
-  document.querySelectorAll('.btn-outline-dark').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.btn-outline-light').forEach(btn => btn.classList.remove('active'));
   if(cat === 'all') document.getElementById('all-btn').classList.add('active');
   else if(cat === 'sari') document.getElementById('sari-btn').classList.add('active');
   else if(cat === 'kurta') document.getElementById('kurta-btn').classList.add('active');
