@@ -3,82 +3,427 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>মা বাবার দোয়া ক্লথ স্টোর — স্টাইলহাব</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <title>মা বাবার দোয়া ক্লথ স্টোর</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Hind Siliguri', sans-serif; background: #0a0a0a; }
+
+    /* NAV */
+    .nav {
+      background: #0a0a0a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 32px;
+      border-bottom: 1px solid #C9A84C33;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: #C9A84C;
+      letter-spacing: 0.5px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #e0e0e0;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #C9A84C; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1208 60%, #0a0a0a 100%);
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 48px 32px;
+      border-bottom: 1px solid #C9A84C44;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 50% 60%, #C9A84C18 0%, transparent 70%);
+    }
+    .hero-tag {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #C9A84C;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      font-weight: 500;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 38px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 14px;
+      position: relative;
+    }
+    .hero h1 span { color: #C9A84C; }
+    .hero p {
+      color: #aaa;
+      font-size: 15px;
+      margin-bottom: 28px;
+      position: relative;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      position: relative;
+    }
+    .btn-gold {
+      background: #C9A84C;
+      color: #0a0a0a;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+    .btn-outline {
+      background: transparent;
+      color: #C9A84C;
+      border: 1px solid #C9A84C;
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+
+    /* OFFER BANNER */
+    .offer-banner {
+      background: #1a1a1a;
+      border-top: 1px solid #C9A84C44;
+      border-bottom: 1px solid #C9A84C44;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .offer-text {
+      font-size: 15px;
+      font-weight: 700;
+      color: #C9A84C;
+    }
+    .offer-sub {
+      font-size: 13px;
+      color: #888;
+      margin-top: 2px;
+    }
+    .offer-code {
+      background: #C9A84C;
+      color: #0a0a0a;
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* PRODUCTS SECTION */
+    .section {
+      background: #0f0f0f;
+      padding: 40px 32px;
+    }
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .section-sub {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 16px;
+    }
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: #C9A84C;
+      margin-bottom: 28px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .product-card {
+      background: #1a1a1a;
+      border: 0.5px solid #C9A84C33;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .product-img {
+      height: 160px;
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 0.5px solid #C9A84C22;
+    }
+    .product-img i {
+      font-size: 48px;
+      color: #C9A84C55;
+    }
+    .product-info { padding: 14px; }
+    .product-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #e8e8e8;
+      margin-bottom: 4px;
+    }
+    .product-cat {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 10px;
+    }
+    .product-price {
+      font-size: 16px;
+      font-weight: 700;
+      color: #C9A84C;
+    }
+    .product-old {
+      font-size: 12px;
+      color: #555;
+      text-decoration: line-through;
+      margin-left: 6px;
+    }
+    .product-btn {
+      width: 100%;
+      margin-top: 10px;
+      background: transparent;
+      color: #C9A84C;
+      border: 0.5px solid #C9A84C;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 600;
+      font-family: 'Hind Siliguri', sans-serif;
+      transition: background 0.2s, color 0.2s;
+    }
+    .product-btn:hover {
+      background: #C9A84C;
+      color: #0a0a0a;
+    }
+    .badge-new {
+      display: inline-block;
+      background: #C9A84C;
+      color: #0a0a0a;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #080808;
+      border-top: 1px solid #C9A84C33;
+      padding: 36px 32px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+    }
+    .footer-brand {
+      font-size: 17px;
+      font-weight: 700;
+      color: #C9A84C;
+      margin-bottom: 10px;
+    }
+    .footer-desc {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.7;
+    }
+    .footer-heading {
+      font-size: 13px;
+      font-weight: 700;
+      color: #C9A84C;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-links li {
+      font-size: 13px;
+      color: #777;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-links li i { font-size: 15px; color: #C9A84C99; }
+    .footer-bottom {
+      background: #080808;
+      border-top: 0.5px solid #C9A84C22;
+      padding: 14px 32px;
+      text-align: center;
+      font-size: 12px;
+      color: #444;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .nav { padding: 12px 16px; }
+      .nav-links { gap: 14px; }
+      .hero { padding: 36px 16px; }
+      .hero h1 { font-size: 26px; }
+      .hero-btns { flex-direction: column; align-items: center; }
+      .offer-banner { padding: 14px 16px; }
+      .section { padding: 32px 16px; }
+      .footer { padding: 28px 16px 16px; }
+      .footer-bottom { padding: 12px 16px; }
+    }
+  </style>
 </head>
 <body>
 
-<nav class="navbar navbar-dark sticky-top" style="background: #000 !important;">
-  <div class="container">
-    <a class="navbar-brand fw-bold fs-3 text-white" href="#">🛍️ মা বাবার দোয়া ক্লথ স্টোর</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link text-white" href="#">হোম</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#">সাড়ি ও থ্রি পিস</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#">পুরুষদের</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#">নারীদের</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#">অ্যাক্সেসরিজ</a></li>
-      </ul>
-      <div>
-        <button class="btn btn-light me-3 position-relative" data-bs-toggle="offcanvas" data-bs-target="#cart">
-          <i class="fas fa-shopping-cart fs-4"></i>
-          <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge bg-danger rounded-pill">০</span>
-        </button>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">🛍️ মা বাবার দোয়া ক্লথ স্টোর</div>
+    <ul class="nav-links">
+      <li><a href="#">হোম</a></li>
+      <li><a href="#">পণ্য</a></li>
+      <li><a href="#">অফার</a></li>
+      <li><a href="#">যোগাযোগ</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-tag">✦ বাংলাদেশের সেরা পোশাক</div>
+    <h1>মা বাবার দোয়া<br><span>ক্লথ স্টোর</span></h1>
+    <p>ট্র্যাডিশনাল ও ফ্যাশনেবল কাপড় — স্টাইল + কোয়ালিটি + দাম</p>
+    <div class="hero-btns">
+      <button class="btn-gold">ক্যাটাগরি দেখুন</button>
+      <button class="btn-outline">অফার দেখুন</button>
+    </div>
+  </div>
+
+  <!-- OFFER BANNER -->
+  <div class="offer-banner">
+    <div>
+      <div class="offer-text">বিশেষ ছাড় চলছে — সর্বোচ্চ ৪০% ছাড়!</div>
+      <div class="offer-sub">সীমিত সময়ের জন্য। দ্রুত অর্ডার করুন।</div>
+    </div>
+    <div class="offer-code">DOYA40</div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="section">
+    <div class="section-title">আমাদের পণ্য</div>
+    <div class="section-sub">সেরা মানের কাপড় সরাসরি আপনার দোরগোড়ায়</div>
+    <div class="divider"></div>
+    <div class="product-grid">
+
+      <div class="product-card">
+        <div class="product-img"><i class="ti ti-shirt"></i></div>
+        <div class="product-info">
+          <div class="badge-new">নতুন</div>
+          <div class="product-name">পাঞ্জাবি কালেকশন</div>
+          <div class="product-cat">পুরুষ পোশাক</div>
+          <div><span class="product-price">৳ ৮৫০</span><span class="product-old">৳ ১২০০</span></div>
+          <button class="product-btn">কার্টে যোগ করুন</button>
+        </div>
       </div>
+
+      <div class="product-card">
+        <div class="product-img"><i class="ti ti-hanger"></i></div>
+        <div class="product-info">
+          <div class="product-name">শাড়ি কালেকশন</div>
+          <div class="product-cat">মহিলা পোশাক</div>
+          <div><span class="product-price">৳ ১২০০</span><span class="product-old">৳ ১৮০০</span></div>
+          <button class="product-btn">কার্টে যোগ করুন</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img"><i class="ti ti-friends"></i></div>
+        <div class="product-info">
+          <div class="badge-new">হট</div>
+          <div class="product-name">কিডস কালেকশন</div>
+          <div class="product-cat">শিশু পোশাক</div>
+          <div><span class="product-price">৳ ৪৫০</span><span class="product-old">৳ ৬৫০</span></div>
+          <button class="product-btn">কার্টে যোগ করুন</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img"><i class="ti ti-tie"></i></div>
+        <div class="product-info">
+          <div class="product-name">থ্রি-পিস সেট</div>
+          <div class="product-cat">প্রিমিয়াম কালেকশন</div>
+          <div><span class="product-price">৳ ২২০০</span><span class="product-old">৳ ৩০০০</span></div>
+          <button class="product-btn">কার্টে যোগ করুন</button>
+        </div>
+      </div>
+
     </div>
   </div>
-</nav>
 
-<!-- হিরো (ডার্ক + সুন্দর) -->
-<section id="hero" class="text-white text-center py-5" style="background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://picsum.photos/id/1015/1920/900') center/cover no-repeat; height: 85vh;">
-  <div class="container h-100 d-flex flex-column justify-content-center">
-    <h1 class="display-4 fw-bold mb-3">মা বাবার দোয়া ক্লথ স্টোর</h1>
-    <p class="lead mb-4">বাংলাদেশের সেরা ট্র্যাডিশনাল ও ফ্যাশনেবল কাপড় — স্টাইল + কোয়ালিটি + দাম</p>
-    <a href="#products" class="btn btn-warning btn-lg px-5 py-3 rounded-pill shadow-lg">ক্যাটাগরি দেখো</a>
-  </div>
-</section>
-
-<section id="products" class="py-5">
-  <div class="container">
-    <h2 class="text-center mb-5 fw-bold">আমাদের নতুন কালেকশন</h2>
-    
-    <div class="d-flex justify-content-center mb-4 flex-wrap gap-2">
-      <button onclick="filterCategory('all')" class="btn btn-outline-dark mx-1 px-4 py-2 rounded-pill active" id="all-btn">সব</button>
-      <button onclick="filterCategory('sari')" class="btn btn-outline-dark mx-1 px-4 py-2 rounded-pill" id="sari-btn">সাড়ি</button>
-      <button onclick="filterCategory('kurta')" class="btn btn-outline-dark mx-1 px-4 py-2 rounded-pill" id="thri pcs-btn">থ্রি পিস</button>
-      <button onclick="filterCategory('shirt')" class="btn btn-outline-dark mx-1 px-4 py-2 rounded-pill" id="shirt-btn">শার্ট</button>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>
+      <div class="footer-brand">🛍️ মা বাবার দোয়া</div>
+      <div class="footer-desc">বাংলাদেশের সেরা ট্র্যাডিশনাল ও ফ্যাশনেবল পোশাকের দোকান। মানসম্পন্ন পোশাক সরাসরি আপনার কাছে।</div>
     </div>
-
-    <div class="row" id="product-grid"></div>
-  </div>
-</section>
-
-<!-- কার্ট -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="cart">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title">আপনার কার্ট</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-  </div>
-  <div class="offcanvas-body">
-    <div id="cart-items"></div>
-    <div class="mt-4">
-      <h5 class="d-flex justify-content-between"><span>মোট:</span><span id="cart-total">৳ ০</span></h5>
-      <button class="btn btn-dark w-100 mt-3" onclick="checkout()">চেকআউট করুন</button>
+    <div>
+      <div class="footer-heading">যোগাযোগ</div>
+      <ul class="footer-links">
+        <li><i class="ti ti-phone"></i> 01636800142/01305085872</li>
+        <li><i class="ti ti-mail"></i> info@mababardoya.com</li>
+        <li><i class="ti ti-map-pin"></i> বাঁশখালী, চট্টগ্রাম, বাংলাদেশ</li>
+        <li><i class="ti ti-brand-facebook"></i> Facebook পেজ</li>
+      </ul>
     </div>
+    <div>
+      <div class="footer-heading">দ্রুত লিংক</div>
+      <ul class="footer-links">
+        <li><i class="ti ti-arrow-right"></i> পুরুষ পোশাক</li>
+        <li><i class="ti ti-arrow-right"></i> মহিলা পোশাক</li>
+        <li><i class="ti ti-arrow-right"></i> শিশু পোশাক</li>
+        <li><i class="ti ti-arrow-right"></i> বিশেষ অফার</li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    © ২০২৬ মা বাবার দোয়া ক্লথ স্টোর। সকল স্বত্ব সংরক্ষিত।
   </div>
-</div>
 
-<footer class="bg-black text-white py-4 text-center">
-  <p>© ২০২৬ মা বাবার দোয়া ক্লথ স্টোর</p>
-  <p>bKash: 01636800142 | Nagad: 01636800142 | WhatsApp: 01636800142</p>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
